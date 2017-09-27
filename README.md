@@ -533,4 +533,34 @@ let color = "red"
 let colour = "red"
 ```
 
+# 闭包表达式
+
+仅在参数列表末尾有单个闭包表达式参数时才使用尾随闭包语法。
+**DO**
+```Swift
+UIView.animate(withDuration: 1.0) {
+  self.myView.alpha = 0
+}
+
+UIView.animate(withDuration: 1.0, animations: {
+  self.myView.alpha = 0
+}, completion: { finished in
+  self.myView.removeFromSuperview()
+})
+```
+
+**DON'T**
+```Swift
+UIView.animate(withDuration: 1.0, animations: {
+  self.myView.alpha = 0
+})
+
+UIView.animate(withDuration: 1.0, animations: {
+  self.myView.alpha = 0
+}) { f in
+  self.myView.removeFromSuperview()
+}
+```
+
+
 
